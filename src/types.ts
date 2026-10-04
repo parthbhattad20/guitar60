@@ -120,3 +120,21 @@ export interface GameState {
   totalRetries: number;
   exercisesCompleted: number;
 }
+
+export type AppMode = 'home' | 'session' | 'theory' | 'quick-practice';
+
+export type TheoryRenderKind =
+  | 'alphabet'
+  | 'fretboard-all'
+  | 'half-steps'
+  | 'scale-builder'
+  | 'triad'
+  | 'major-minor';
+
+export interface TheoryStep {
+  id: string;
+  title: string;
+  instructions: string[];
+  render: TheoryRenderKind;
+  xpReward?: number;
+}

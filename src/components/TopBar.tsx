@@ -10,6 +10,7 @@ interface Props {
   sectionIndex: number;
   totalSections: number;
   lastXpGain: number | null;
+  onExit?: () => void;
 }
 
 export default function TopBar({
@@ -22,17 +23,21 @@ export default function TopBar({
   sectionIndex,
   totalSections,
   lastXpGain,
+  onExit,
 }: Props) {
   return (
-    <div className="w-full bg-surface/90 backdrop-blur border-b border-white/10 px-4 sm:px-6 py-3 flex flex-col gap-2.5 sticky top-0 z-30">
+    <div className="w-full bg-surface/90 backdrop-blur border-b border-white/10 px-4 sm:px-6 py-3 flex flex-col gap-2.5 sticky top-11 z-30">
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <div className="flex items-center gap-3">
-          <span className="text-lg sm:text-xl font-black tracking-tight text-white">
-            GUITAR <span className="text-accent">60</span>
-          </span>
+          <span className="text-lg sm:text-xl font-black tracking-tight text-white">60-Minute Session</span>
           <span className="hidden sm:inline text-xs text-[#6d7280] font-semibold">
             Section {sectionIndex}/{totalSections} · {section}
           </span>
+          {onExit && (
+            <button onClick={onExit} className="text-xs text-[#9aa0ad] hover:text-white underline">
+              Exit to Home
+            </button>
+          )}
         </div>
         <div className="flex items-center gap-3 sm:gap-5">
           <div className="flex items-center gap-1.5">

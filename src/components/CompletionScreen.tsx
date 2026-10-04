@@ -5,9 +5,10 @@ interface Props {
   state: GameState;
   onRestart: () => void;
   onFocusBarre: () => void;
+  onHome?: () => void;
 }
 
-export default function CompletionScreen({ state, onRestart, onFocusBarre }: Props) {
+export default function CompletionScreen({ state, onRestart, onFocusBarre, onHome }: Props) {
   const stats = [
     { label: 'XP Earned', value: state.xp },
     { label: 'Level Reached', value: state.level },
@@ -75,6 +76,14 @@ export default function CompletionScreen({ state, onRestart, onFocusBarre }: Pro
           >
             Focus on Barre Chords
           </button>
+          {onHome && (
+            <button
+              onClick={onHome}
+              className="px-6 py-3 rounded-xl bg-white/10 text-white font-bold hover:bg-white/20 transition"
+            >
+              Back to Home
+            </button>
+          )}
         </div>
       </div>
     </div>

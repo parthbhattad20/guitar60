@@ -118,3 +118,5 @@ export function useGameState() {
 
   return { state, actions, lastXpGain };
 }
+
+export type GameActions = ReturnType<typeof useGameState>['actions'];
