@@ -8,6 +8,7 @@ import StrummingTrainer from './StrummingTrainer';
 import BarreShapeViewer from './BarreShapeViewer';
 import BarreChallengeGame from './BarreChallengeGame';
 import FingerstyleTrainer from './FingerstyleTrainer';
+import ScaleTrainer from './ScaleTrainer';
 import FinalChallenge from './FinalChallenge';
 import CountdownExercise from './CountdownExercise';
 import CompletionScreen from './CompletionScreen';
@@ -25,6 +26,7 @@ const SECTION_BADGE: Record<string, string> = {
   'Barre Chord Fundamentals': 'barre-beginner',
   'Barre Chord Practice Game': 'barre-builder',
   Fingerstyle: 'fingerstyle-starter',
+  'Scale Practice': 'scale-starter',
 };
 
 const SHAPE_EXPLANATIONS: Record<string, string> = {
@@ -289,6 +291,19 @@ export default function SessionMode({ state, actions, lastXpGain, onExit }: Prop
           </div>
         );
 
+      case 'scale':
+        if (!step.scalePattern) return null;
+        return (
+          <div className="flex flex-col items-center gap-6 w-full">
+            <InstructionList items={step.instructions} />
+            <ScaleTrainer
+              pattern={step.scalePattern}
+              initialBpm={step.bpm}
+              onBpmChange={(b) => actions.setHighestBpm(b)}
+            />
+          </div>
+        );
+
       case 'final':
         return (
           <div className="flex flex-col items-center gap-6 w-full">
@@ -332,6 +347,17 @@ export default function SessionMode({ state, actions, lastXpGain, onExit }: Prop
         onExit={onExit}
       />
 
+      <BottomControls
+        onBack={handleBack}
+        onNext={handleNext}
+        onPauseToggle={handlePauseToggle}
+        onRestartStep={handleRestartStep}
+        paused={paused}
+        canGoBack={currentIndex > 0}
+        isLast={isLast}
+        percentComplete={percentComplete}
+      />
+
       <main className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-10 flex flex-col gap-6">
         <div className="slide-up flex flex-col gap-1">
           <span className="text-xs font-bold uppercase tracking-wide text-accent">{step.section}</span>
@@ -343,16 +369,6 @@ export default function SessionMode({ state, actions, lastXpGain, onExit }: Prop
         </div>
       </main>
 
-      <BottomControls
-        onBack={handleBack}
-        onNext={handleNext}
-        onPauseToggle={handlePauseToggle}
-        onRestartStep={handleRestartStep}
-        paused={paused}
-        canGoBack={currentIndex > 0}
-        isLast={isLast}
-        percentComplete={percentComplete}
-      />
     </div>
   );
 }

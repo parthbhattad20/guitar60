@@ -1,6 +1,7 @@
 import type { LessonStep } from '../types';
 import { OPEN_CHORDS, eShapeMajor, eShapeMinor, aShapeMajor, aShapeMinor, BARRE_CHORDS } from './chords';
 import { STRUM_PATTERNS, FINGERSTYLE_PATTERNS } from './patterns';
+import { SCALE_PATTERNS } from './scales';
 
 const S1 = 'Warm-up & Finger Activation';
 const S2 = 'Open Chord Mastery';
@@ -9,7 +10,8 @@ const S4 = 'Strumming Training';
 const S5 = 'Barre Chord Fundamentals';
 const S6 = 'Barre Chord Practice Game';
 const S7 = 'Fingerstyle';
-const S8 = 'Final Performance Challenge';
+const S8 = 'Scale Practice';
+const S9 = 'Final Performance Challenge';
 
 let counter = 0;
 function id(prefix: string) {
@@ -403,6 +405,42 @@ const stage8: LessonStep[] = [
     id: id('s8'),
     section: S8,
     sectionIndex: 8,
+    title: 'How to Practice Scales',
+    durationSeconds: 60,
+    type: 'lesson',
+    instructions: [
+      'Play with alternate picking: down, up, down, up — even when you change strings.',
+      'Keep each fingertip close to the fretboard and release tension after every pass.',
+      'Start at 50 BPM with one note per click. Only raise the tempo when every note is clean.',
+      'Practice each pattern ascending and descending so your hands learn both directions.',
+    ],
+  },
+  ...SCALE_PATTERNS.map((scale, index) => ({
+    id: id('s8'),
+    section: S8,
+    sectionIndex: 8,
+    title: `${scale.name} Exercise`,
+    durationSeconds: 120,
+    type: 'scale' as const,
+    instructions: [
+      index < 2
+        ? 'Play the eight-note pattern ascending, then reverse it without pausing at the top.'
+        : 'Play all six strings ascending and descending through the box shape.',
+      'Use the string, fret, and finger labels below. Open means play the string without fretting it.',
+      'Begin at 50 BPM. Complete four clean round trips before trying 60 BPM.',
+      'Say each note name aloud as you play to connect the shape to the fretboard.',
+    ],
+    scalePattern: scale,
+    bpm: 50,
+    xpReward: 30,
+  })),
+];
+
+const stage9: LessonStep[] = [
+  {
+    id: id('s9'),
+    section: S9,
+    sectionIndex: 9,
     title: 'Final 2-Minute Performance Challenge',
     durationSeconds: 120,
     type: 'final',
@@ -421,7 +459,7 @@ const stage8: LessonStep[] = [
 const complete: LessonStep = {
   id: 'complete',
   section: 'Complete',
-  sectionIndex: 9,
+  sectionIndex: 10,
   title: 'Session Complete',
   durationSeconds: 0,
   type: 'complete',
@@ -437,9 +475,10 @@ export const LESSON_STEPS: LessonStep[] = [
   ...stage6,
   ...stage7,
   ...stage8,
+  ...stage9,
   complete,
 ];
 
 export const TOTAL_PLANNED_SECONDS = LESSON_STEPS.reduce((sum, s) => sum + s.durationSeconds, 0);
 
-export const SECTION_NAMES = [S1, S2, S3, S4, S5, S6, S7, S8];
+export const SECTION_NAMES = [S1, S2, S3, S4, S5, S6, S7, S8, S9];

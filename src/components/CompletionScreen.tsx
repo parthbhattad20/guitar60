@@ -28,7 +28,7 @@ export default function CompletionScreen({ state, onRestart, onFocusBarre, onHom
           60 MINUTES COMPLETE
         </h1>
         <p className="text-[#9aa0ad] text-center">
-          You've worked through open chords, clean changes, strumming, barre chords, and fingerstyle. Nice session.
+          You've worked through open chords, clean changes, strumming, barre chords, fingerstyle, and scales. Nice session.
         </p>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full">

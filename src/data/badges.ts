@@ -37,6 +37,12 @@ export const BADGES: Record<string, Badge> = {
     description: 'Played your first fingerstyle pattern.',
     icon: '✨',
   },
+  'scale-starter': {
+    id: 'scale-starter',
+    name: 'Scale Starter',
+    description: 'Completed the guided scale practice exercises.',
+    icon: '🎼',
+  },
   '60-minute-guitarist': {
     id: '60-minute-guitarist',
     name: '60-Minute Guitarist',

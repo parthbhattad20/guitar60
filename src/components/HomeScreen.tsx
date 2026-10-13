@@ -29,7 +29,7 @@ export default function HomeScreen({ state, onSelect }: Props) {
           <ModeCard
             icon="🎸"
             title="60-Minute Session"
-            description="The full structured course — warm-up, open chords, changes, strumming, barre chords, and fingerstyle."
+            description="The full structured course — warm-up, open chords, changes, strumming, barre chords, fingerstyle, and scales."
             tag="60 min"
             onClick={() => onSelect('session')}
           />

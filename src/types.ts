@@ -55,6 +55,7 @@ export type LessonStepType =
   | 'barre'
   | 'barre-game'
   | 'fingerstyle'
+  | 'scale'
   | 'final'
   | 'complete';
 
@@ -79,6 +80,22 @@ export interface FingerstylePattern {
   stringForFinger: Record<'P' | 'i' | 'm' | 'a', number>;
 }
 
+export interface ScaleNote {
+  note: string;
+  string: number;
+  fret: number;
+  finger?: 1 | 2 | 3 | 4;
+}
+
+export interface ScalePattern {
+  id: string;
+  name: string;
+  root: string;
+  notes: string[];
+  degrees: string[];
+  sequence: ScaleNote[];
+}
+
 export interface LessonStep {
   id: string;
   section: string;
@@ -96,6 +113,7 @@ export interface LessonStep {
   patterns?: StrumPattern[];
   fingerstylePattern?: FingerstylePattern;
   fingerstylePatterns?: FingerstylePattern[];
+  scalePattern?: ScalePattern;
   badgeOnComplete?: string;
   xpReward?: number;
 }

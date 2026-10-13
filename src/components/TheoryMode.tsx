@@ -76,6 +76,23 @@ export default function TheoryMode({ xp, level, onXp, onExit }: Props) {
         </div>
       </div>
 
+      <div className="w-full bg-surface/95 backdrop-blur border-b border-white/10 px-4 sm:px-6 py-3 flex items-center justify-between gap-2">
+        <button
+          onClick={goBack}
+          disabled={index === 0}
+          className="px-4 sm:px-5 py-2.5 rounded-xl bg-white/8 text-white font-semibold hover:bg-white/15 transition disabled:opacity-30 disabled:cursor-not-allowed text-sm"
+        >
+          ← Back
+        </button>
+        <span className="text-xs text-[#6d7280] font-bold">{Math.round(percent)}% complete</span>
+        <button
+          onClick={goNext}
+          className="px-5 sm:px-7 py-2.5 rounded-xl bg-accent text-[#06121f] font-black hover:brightness-110 transition shadow-lg shadow-accent/25 text-sm sm:text-base"
+        >
+          {isLast ? 'Finish ✓' : 'Next Step →'}
+        </button>
+      </div>
+
       <main className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-10 flex flex-col gap-6">
         <div className="slide-up flex flex-col gap-1">
           <span className="text-xs font-bold uppercase tracking-wide text-accent">Theory</span>
@@ -183,22 +200,6 @@ export default function TheoryMode({ xp, level, onXp, onExit }: Props) {
         </div>
       </main>
 
-      <div className="sticky bottom-0 z-30 w-full bg-surface/95 backdrop-blur border-t border-white/10 px-4 sm:px-6 py-3 flex items-center justify-between gap-2">
-        <button
-          onClick={goBack}
-          disabled={index === 0}
-          className="px-4 sm:px-5 py-2.5 rounded-xl bg-white/8 text-white font-semibold hover:bg-white/15 transition disabled:opacity-30 disabled:cursor-not-allowed text-sm"
-        >
-          ← Back
-        </button>
-        <span className="text-xs text-[#6d7280] font-bold">{Math.round(percent)}% complete</span>
-        <button
-          onClick={goNext}
-          className="px-5 sm:px-7 py-2.5 rounded-xl bg-accent text-[#06121f] font-black hover:brightness-110 transition shadow-lg shadow-accent/25 text-sm sm:text-base"
-        >
-          {isLast ? 'Finish ✓' : 'Next Step →'}
-        </button>
-      </div>
     </div>
   );
 }
